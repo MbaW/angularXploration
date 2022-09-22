@@ -7,7 +7,7 @@ import { products } from '../../../products';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent {
-  _products = products;
+  products = products;
 
   share(){
     window.alert('The products has been shared!')
