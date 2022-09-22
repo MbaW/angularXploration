@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
 import { products } from 'src/app/products';
+import { CartService } from 'src/app/services/cart/cart.service';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -11,7 +12,10 @@ export class ProductDetailsComponent implements OnInit {
 
   product: Product | undefined;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private cartService: CartService
+  ) { }
 
   ngOnInit(): void {
     // get the product id
@@ -22,4 +26,8 @@ export class ProductDetailsComponent implements OnInit {
     this.product = products.find(product => product.id === productIdFromRoute);
   }
 
+  addToCart(product: Product){
+    this.cartService.addToCart(product);
+    window.alert('Your product has been added to the cart!');
+  }
 }
